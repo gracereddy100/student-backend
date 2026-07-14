@@ -1,19 +1,26 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const dns = require("dns")
 
+dns.setServers(["8.8.8.8", "8.8.4.4"])
 const app = express();
-app.use(cors());
 app.use(express.json());
 
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.url}`);
     next();
 });
+app.use(cors({
+    origin: ["*", "http://localhost:5173"],
+    methods:["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    allowedHeaders: ["Content-type","Authorization"],
+    credentials: true
+}));
 
 const connectToDB = async () => {
     try {
-        await mongoose.connect("mongodb://localhost:27017/mytestDB");
+        await mongoose.connect("mongodb+srv://gracereddy100_db_user:a7ZfDEhcxTqsEeZe@cluster0.jql7ea5.mongodb.net/studentclub?appName=Cluster0");
         console.log("Database connected...");
     } catch (error) {
         console.log("Not connected...", error);
