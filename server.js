@@ -12,7 +12,7 @@ app.use((req, res, next) => {
     next();
 });
 app.use(cors({
-    origin: ["*", "http://localhost:5173"],
+    origin: ["*", "http://localhost:5173", "https://student-frontend-rho-silk.vercel.app"],
     methods:["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allowedHeaders: ["Content-type","Authorization"],
     credentials: true
